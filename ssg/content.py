@@ -19,13 +19,13 @@ class Content(Mapping):
     def body(self):
         return self.data["content"]
 
-    @body.setter
-    def body(self, value):
-        self.data["type"] = value
-
     @property
     def type(self):
-        return self.data["type"] if self.data.__contains__("type") else None
+        return self.data["type"] if "type" in self.data else None
+
+    @type.setter
+    def type(self, type):
+        self.data["type"] = type
     
     def __getitem__(self, key):
         return self.data[key]
